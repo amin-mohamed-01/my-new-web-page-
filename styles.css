@@ -1,0 +1,489 @@
+/* === Reset & Base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* === Arabic Text Animation === */
+.arabic-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideFadeIn 1.8s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Keyframes for entrance effect */
+@keyframes slideFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Intro Animation === */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.black-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    animation: screenFade 2s ease forwards;
+}
+
+.logo-container {
+    position: relative;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: logoGrow 2s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes screenFade {
+    0% { background-color: black; }
+    25% { background-color: white; }
+    50% { background-color: red; }
+    75% { background-color: blue; }
+    100% { background-color: orange; }
+}
+
+@keyframes logoGrow {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* === Header === */
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: yellow;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: yellow;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease, transform 0.2s;
+}
+
+nav ul li a:hover {
+    color: #ffbb33;
+    transform: scale(1.05);
+}
+
+.cta-btn {
+    background-color: #ffbb33;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cta-btn:hover {
+    background-color: yellow;
+    color: black;
+}
+
+/* === Hero Section === */
+.hero-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #333;
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+    color: yellow;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideFadeIn 1.8s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    color: #e1e1e1;
+}
+
+.hero-section .cta-btn {
+    margin-top: 20px;
+}
+
+/* === General Section Styling === */
+.section {
+    padding: 40px 20px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* === Services Section === */
+#services {
+    background: linear-gradient(145deg, #1a1a1a, #333333);
+    border-radius: 15px;
+}
+
+.service-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.service-item {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 250px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.4);
+}
+
+.service-item i {
+    font-size: 3rem;
+    color: yellow;
+    margin-bottom: 10px;
+}
+
+.service-item h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    color: #e1e1e1;
+}
+
+/* === Portfolio Section === */
+#portfolio {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+}
+
+#portfolio h2 {
+    font-size: 2.5rem;
+    color: yellow;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.portfolio-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.portfolio-item {
+    position: relative;
+    background: linear-gradient(145deg, #0a0a0a, #333);
+    color: yellow;
+    font-size: 1.5rem;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s ease;
+    overflow: hidden;
+}
+
+.portfolio-item::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    z-index: 0;
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(145deg, #ffbb33, #ffdd66);
+}
+
+.portfolio-item:hover::before {
+    transform: rotate(0deg);
+}
+
+.portfolio-item h3 {
+    z-index: 1;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* === Work Hours & Info Section === */
+#work-hours {
+    background: linear-gradient(145deg, #1a1a1a, #333333);
+    border-radius: 15px;
+}
+
+.info-box {
+    background-color: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    color: #e1e1e1;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* === FAQ Section === */
+#faq {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+}
+
+#faq h2 {
+    font-size: 2.5rem;
+    color: yellow;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.faq-item {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.faq-item h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.faq-answer {
+    color: #e1e1e1;
+    display: none;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.faq-answer.active {
+    display: block;
+}
+
+/* === Footer Section === */
+footer {
+    background-color: #222;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+footer h2 {
+    color: yellow;
+    margin-bottom: 20px;
+}
+
+.contact-links a {
+    color: yellow;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+footer form {
+    margin-top: 20px;
+}
+
+footer input {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    margin-right: 10px;
+}
+
+footer button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: yellow;
+    color: black;
+    cursor: pointer;
+}
+
+footer button:hover {
+    background-color: #ffbb33;
+}
+
+/* === Responsive Design === */
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    .hero-section h2 {
+        font-size: 2rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .service-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-item {
+        max-width: 90%;
+    }
+
+    .portfolio-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .portfolio-item {
+        width: 180px;
+        height: 180px;
+        font-size: 1.2rem;
+    }
+
+    .faq-container {
+        padding: 0 10px;
+    }
+
+    .faq-item {
+        max-width: 100%;
+    }
+
+    .info-box {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    footer input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    footer button {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 992px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .service-container {
+        gap: 20px;
+    }
+
+    .service-item {
+        max-width: 45%;
+    }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>إنشاء حساب - Pharaohs Security</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .signup-container {
+      background: linear-gradient(145deg, #1a1a1a, #333333);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: slideFadeIn 1.8s ease-out forwards;
+    }
+    .signup-container h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: yellow;
+    }
+    .oauth-btn {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+      width: 100%;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+    .oauth-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.05);
+    }
+    .google-icon {
+      width: 40px;
+      height: 40px;
+      background: url('https://www.svgrepo.com/show/332087/google-circle.svg') no-repeat center;
+      background-size: cover;
+    }
+    @keyframes slideFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      .signup-container { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <h2>إنشاء حساب</h2>
+
+    <!-- Google Sign-In Button -->
+    <button id="googleSignIn" class="oauth-btn">
+      <span>التسجيل عبر Google</span>
+      <div class="google-icon"></div>
+    </button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyBo0jTqkyDxwF4Ozb4G_7TyQbpG5joU_7U",
+      authDomain: "my-p-723f8.firebaseapp.com",
+      projectId: "my-p-723f8",
+      storageBucket: "my-p-723f8.appspot.com",
+      messagingSenderId: "489075482732",
+      appId: "1:489075482732:web:608af65fdd25162eb3b849",
+      measurementId: "G-486WWD0C9E"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+  
+    const signInButton = document.getElementById('googleSignIn');
+  
+    signInButton.addEventListener('click', async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+  
+        console.log('User signed in:', user.displayName);
+
+        // Save user temporarily in localStorage
+        localStorage.setItem('googleUser', JSON.stringify({
+          name: user.displayName,
+          email: user.email
+        }));
+
+        // Now redirect to login.html to complete info
+        window.location.href = 'login.html';
+
+      } catch (error) {
+        console.error('Google Sign-In Error:', error);
+      }
+    });
+  </script>
+
+</body>
+</html>
+

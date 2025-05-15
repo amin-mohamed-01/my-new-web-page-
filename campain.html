@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campaign Plans</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      color: yellow;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
+    .plans-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .plan-box {
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: yellow;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      transition: transform 0.4s, background 0.4s;
+      cursor: pointer;
+    }
+
+    .plan-box:hover {
+      background: linear-gradient(135deg, #ffbb33, #ffdd66);
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .description-box {
+      position: fixed;
+      top: 65%; /* ⬅️ moved slightly further down */
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background-color: #1a1a1a;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px 20px;
+      border-radius: 20px;
+      color: #fff;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .description-box.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .description-box h3 {
+      color: yellow;
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+    }
+
+    .description-box p {
+      line-height: 1.8;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ffbb33;
+    }
+
+    @keyframes slideDownFade {
+      from { transform: translate(-50%, -60%) scale(0.95); opacity: 0; }
+      to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    @keyframes scalePop {
+      from { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+      to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    @keyframes bounceInCenter {
+      0%   { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+      50%  { transform: translate(-50%, -50%) scale(1.1); }
+      70%  { transform: translate(-50%, -50%) scale(0.95); }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .animate-slideDown {
+      animation: slideDownFade 0.5s ease forwards;
+    }
+
+    .animate-scalePop {
+      animation: scalePop 0.5s ease-out forwards;
+    }
+
+    .animate-bounce {
+      animation: bounceInCenter 0.6s ease-out forwards;
+    }
+
+    @media (max-width: 600px) {
+      .plan-box {
+        width: 120px;
+        height: 120px;
+        font-size: 1.5rem;
+      }
+
+      .description-box {
+        font-size: 1rem;
+        padding: 20px 15px;
+      }
+
+      .description-box h3 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <h2>اختر خطة الحملة</h2>
+    <div class="plans-container">
+      <div class="plan-box" data-title="الخطة الصغيرة" data-desc="15 بوست ديزاين<br>5 بوساتات<br>3 اعلان ممول">S</div>
+      <div class="plan-box" data-title="الخطة المتوسطة" data-desc="23 بوست ديزاين<br>7 بوساتات<br>3 اعلان ممول">M</div>
+      <div class="plan-box" data-title="الخطة الكبيرة" data-desc="50 بوست ديزاين<br>20 بوساتات<br>4 اعلان ممول<br>أغنية باسم المؤسسة<br>موديل">L</div>
+    </div>
+  </section>
+
+  <div class="description-box" id="descBox">
+    <div class="close-btn" onclick="closeDesc()">×</div>
+    <h3 id="descTitle">عنوان الخطة</h3>
+    <p id="descText">تفاصيل الخطة</p>
+  </div>
+
+  <script>
+    const boxes = document.querySelectorAll('.plan-box');
+    const descBox = document.getElementById('descBox');
+    const descTitle = document.getElementById('descTitle');
+    const descText = document.getElementById('descText');
+
+    const animations = ['animate-slideDown', 'animate-scalePop', 'animate-bounce'];
+
+    boxes.forEach(box => {
+      box.addEventListener('click', () => {
+        // Remove previous animations
+        animations.forEach(anim => descBox.classList.remove(anim));
+
+        // Force reflow
+        void descBox.offsetWidth;
+
+        // Update content
+        descTitle.innerText = box.dataset.title;
+        descText.innerHTML = box.dataset.desc;
+
+        // Show with random animation
+        descBox.classList.add('active');
+        const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+        descBox.classList.add(randomAnim);
+      });
+    });
+
+    function closeDesc() {
+      descBox.classList.remove('active');
+      animations.forEach(anim => descBox.classList.remove(anim));
+    }
+  </script>
+
+</body>
+</html>

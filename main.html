@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Broadcast Hub</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Intro Section -->
+<div id="intro-screen">
+    <div class="black-screen"></div>
+    <div class="logo-container">
+        <h1><i class="fas fa-broadcast-tower"></i> Broadcast Hub</h1>
+    </div>
+</div>
+
+<header>
+    <div class="logo">
+        <h1><i class="fas fa-broadcast-tower"></i> Broadcast Hub</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+            <li><a href="#services"><i class="fas fa-cogs"></i> خدماتنا</a></li>
+            <li><a href="#portfolio"><i class="fas fa-briefcase"></i> أعمالنا</a></li>
+            <li>
+                <a href="bagat.html" onclick="window.location.href='bagat.html'; return true;">
+                  <i class="fas fa-tags"></i> الباقات
+                </a>
+              </li>
+            <li><a href="#about"><i class="fas fa-users"></i> عنّا</a></li>
+            <li><a href="#contact"><i class="fas fa-phone-alt"></i> تواصل معنا</a></li>
+        </ul>
+    </nav>
+    
+    <button class="cta-btn">احجز استشارة مجانية</button>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <h2>بنصنعلك حضور رقمي متكامل، من الصوت للصورة!</h2>
+        <p>بودكاست، حملات، ويب سايتات، أنظمة تشغيل، جرافيك، وكل اللي شركتك محتاجاه في مكان واحد.</p>
+        <button class="cta-btn">شوف شغلنا | اطلب عرض سعر</button>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2>خدماتنا</h2>
+        <div class="service-container">
+            <div class="service-item">
+                <i class="fas fa-microphone"></i>
+                <h3>راديو وبودكاست</h3>
+                <p>إنتاج، تحرير، ونشر برامج صوتية بتوصل لعميلك.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-share-alt"></i>
+                <h3>إدارة السوشيال ميديا</h3>
+                <p>إدارة كاملة + محتوى + حملات مدفوعة.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-bullhorn"></i>
+                <h3>كامبينز إعلانية وتنفيذها</h3>
+                <p>للمؤسسات، المولات، معارض العربيات، وغيرها.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-laptop"></i>
+                <h3>تصميم وبرمجة مواقع</h3>
+                <p>ويب سايتات مخصصة حسب النشاط.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-cogs"></i>
+                <h3>أنظمة للمطاعم والمشاريع</h3>
+                <p>سيستم طلبات، حسابات، تقارير، وكل اللي تحتاجه.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-image"></i>
+                <h3>جرافيك وموشن جرافيك</h3>
+                <p>تصميمات جذابة بتخطف العين وتشرح الفكرة.</p>
+            </div>
+            <div class="service-item" onclick="window.location.href='bagat.html';">
+                <i class="fas fa-tags"></i>
+                <h3>الباقات والأسعار</h3>
+                <p>خطط مرنة تبدأ من كذا وتناسب كل احتياج.</p>
+            </div>
+            
+            <div class="service-item">
+                <i class="fas fa-briefcase"></i>
+                <h3>نماذج أعمالنا</h3>
+                <p>شوف شغلنا واحكم بنفسك.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2>أحدث أعمالنا</h2>
+        <div class="portfolio-container">
+            <div class="portfolio-item">
+                <h3>بودكاست</h3>
+            </div>
+            <div class="portfolio-item" onclick="window.location.href='campain.html';">
+                <h3>كامبين</h3>
+            </div>
+            
+            <div class="portfolio-item">
+                <h3>ويب سايت</h3>
+            </div>
+            <div class="portfolio-item">
+                <h3>جرافيك</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <h2>أسئلة متكررة</h2>
+        <div class="faq-container">
+            <div class="faq-item" onclick="toggleFAQ(1)">
+                <h3>التسليم بياخد قد إيه؟</h3>
+                <p id="answer-1" class="faq-answer">التسليم بياخد من 3 إلى 5 أيام عمل حسب حجم المشروع.</p>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(2)">
+                <h3>إيه طرق الدفع؟</h3>
+                <p id="answer-2" class="faq-answer">نقبل الدفع عبر البطاقات الائتمانية، التحويلات البنكية، وطرق الدفع الإلكترونية.</p>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(3)">
+                <h3>هل في تعديل بعد التسليم؟</h3>
+                <p id="answer-3" class="faq-answer">نعم، بإمكانك طلب تعديلات بعد التسليم حسب الاتفاق.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="section">
+        <h2>مواعيد الشغل والأسئلة الشائعة</h2>
+        <p>بنرد خلال ٢٤ ساعة</p>
+        <p><strong>مواعيدنا:</strong> من الأحد للخميس من ١٠ ص لـ ٦ م</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <h2>تواصل معنا</h2>
+        <div class="contact-links">
+            <a href="#">واتساب</a>
+            <a href="#">لينكدإن</a>
+            <a href="#">إنستجرام</a>
+            <a href="#">فيسبوك</a>
+        </div>
+        <form>
+            <input type="text" placeholder="ابعت لنا فكرتك هنرد عليك" />
+            <button type="submit">إرسال</button>
+        </form>
+    </footer>
+</main>
+
+<!-- ✅ One-Time Intro Animation Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const introScreen = document.getElementById("intro-screen");
+
+        if (!localStorage.getItem("introShown")) {
+            introScreen.style.display = "flex";
+
+            setTimeout(() => {
+                introScreen.style.display = "none";
+                localStorage.setItem("introShown", "true");
+            }, 3000); // 3 seconds duration
+        } else {
+            introScreen.style.display = "none";
+        }
+    });
+
+    // Optional FAQ toggle if not already defined
+    function toggleFAQ(id) {
+        const answer = document.getElementById("answer-" + id);
+        if (answer.classList.contains("active")) {
+            answer.classList.remove("active");
+        } else {
+            answer.classList.add("active");
+        }
+    }
+</script>
+
+</body>
+</html>

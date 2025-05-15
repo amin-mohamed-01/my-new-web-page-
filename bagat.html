@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>باقاتنا</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: yellow;
+      text-align: center;
+      margin: 40px 0;
+      animation: slideFadeIn 1.8s ease-out forwards;
+    }
+
+    @keyframes slideFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      padding: 30px 20px;
+      max-width: 280px;
+      width: 100%;
+      text-align: right;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 0, 0.15);
+      animation: floatCard 5s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .card:hover {
+      transform: rotateX(5deg) rotateY(-5deg) scale(1.02);
+      box-shadow: 0 15px 25px rgba(255, 255, 0, 0.3), 0 0 20px rgba(255, 255, 0, 0.2);
+      background: linear-gradient(145deg, #111, #222);
+    }
+
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255, 255, 0, 0.05), transparent 70%);
+      transform: rotate(30deg);
+      z-index: 0;
+      transition: all 0.4s ease;
+      animation: pulseGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        opacity: 0.05;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.1;
+        transform: scale(1.2);
+      }
+    }
+
+    .card:hover::before {
+      background: radial-gradient(circle at center, rgba(255, 255, 0, 0.1), transparent 80%);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: yellow;
+      margin-bottom: 15px;
+      z-index: 1;
+      position: relative;
+      text-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+    }
+
+    .card p {
+      color: #e1e1e1;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      z-index: 1;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .card:hover p {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .card {
+        max-width: 90%;
+      }
+    }
+
+    /* Popup Styles */
+    .popup {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .popup.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .popup-content {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 30px 20px;
+      max-width: 500px;
+      width: 90%;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 255, 0, 0.2);
+      position: relative;
+      animation: scaleIn 0.5s ease forwards;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup-content h3 {
+      color: yellow;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .popup-content ul {
+      padding-right: 20px;
+    }
+
+    .popup-content li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    #closePopup {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: yellow;
+      transition: transform 0.3s;
+    }
+
+    #closePopup:hover {
+      transform: scale(1.2);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>الباقات المتوفرة</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>باقة 1</h3>
+      <p>إدارة يومية للصفحة (مودريتور للرد على التعليقات والرسائل).</p>
+      <p>ممول إعلاني أهم بوست الأسبوع.</p>
+      <p>عدد 4 بوستات ثابتة (تصميم وصياغة).</p>
+      <p>عدد 1 فيديو بسيط.</p>
+      <p>لا تشمل تصميم لوجو أو كوفر فيس.</p>
+      <p>تقارير تفاعل شهرية مختصرة.</p>
+    </div>
+
+    <div class="card">
+      <h3>باقة ٢</h3>
+      <p>إدارة يومية ومتابعة التفاعل (مودريتور).</p>
+      <p>ممول إعلاني على بوست في الأسبوع.</p>
+      <p>عدد 8 بوستات ثابتة.</p>
+      <p>عدد 2 فيديو (رييلز أو موشن خفيف).</p>
+      <p>تشمل تصميم كوفر فيس.</p>
+      <p>تشمل تصميم لوجو بسيط.</p>
+      <p>تقارير شهرية.</p>
+    </div>
+
+    <div class="card">
+      <h3>باقة ٣</h3>
+      <p>إدارة كاملة شاملة (مودريتور محترف).</p>
+      <p>ممول إعلاني أقوى بأفكار موجهة.</p>
+      <p>عدد 12 بوست ثابت متنوع.</p>
+      <p>عدد 4 فيديوهات (رييلز - موشن – توعية أو عرض منتجات).</p>
+      <p>تشمل تصميم كوفر فيس.</p>
+      <p>تشمل تصميم لوجو احترافي.</p>
+      <p>تقارير تفصيلية + خطة تطوير.</p>
+    </div>
+
+    <div class="card">
+      <h3>باقة ٤</h3>
+      <p>إدارة احترافية وتفاعل لحظي (مودريتور متفرغ).</p>
+      <p>أفكار حملات دعائية شهرية + ممول مخصص.</p>
+      <p>عدد 16 بوست احترافي.</p>
+      <p>عدد 6 فيديوهات إبداعية (رييلز – موشن – توثيق – مقابلات صغيرة).</p>
+      <p>تشمل تصميم لوجو احترافي ونسخ منه لأنواع الاستخدام المختلفة.</p>
+      <p>تصميم غلافات لكل المناسبات الشهرية.</p>
+      <p>تقارير أسبوعية + خطة تسويق شهرية محدثة.</p>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <span id="closePopup">&times;</span>
+      <h3 id="popupTitle"></h3>
+      <ul id="popupDetails"></ul>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const popup = document.getElementById('popup');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupDetails = document.getElementById('popupDetails');
+    const closePopup = document.getElementById('closePopup');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.querySelector('h3').innerText;
+        const details = card.querySelectorAll('p');
+        popupTitle.innerText = title;
+        popupDetails.innerHTML = '';
+
+        details.forEach(p => {
+          const li = document.createElement('li');
+          li.innerText = p.innerText;
+          popupDetails.appendChild(li);
+        });
+
+        popup.classList.add('show');
+        popup.classList.remove('hidden');
+      });
+    });
+
+    closePopup.addEventListener('click', () => {
+      popup.classList.remove('show');
+      setTimeout(() => popup.classList.add('hidden'), 300);
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closePopup.click();
+      }
+    });
+  </script>
+
+</body>
+</html>
